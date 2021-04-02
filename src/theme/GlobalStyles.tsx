@@ -16,10 +16,12 @@ export const GlobalStyles = createGlobalStyle`
     padding:0;
     margin:0;
     width: 100vw;
-    /* height: 100vh; */
+    height: 100vh;
     background: linear-gradient(hsl(214, 47%, 23%), hsl(237, 49%, 15%));
     background-repeat: no-repeat;
+    background-position: center center;
     background-size: cover;
+    background-attachment: fixed;
     font-family: 'Barlow Semi Condensed';
     font-weight: 600;
     letter-spacing: 0.25rem;
