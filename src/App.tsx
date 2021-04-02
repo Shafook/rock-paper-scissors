@@ -1,26 +1,43 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { useEffect, useState } from 'react';
+import WebFont from 'webfontloader';
+import { GlobalStyles } from './theme/GlobalStyles';
+import Header from './components/Header';
+import Game from './components/Game';
+import Rules from './components/Rules';
+import RulesModal from './components/RulesModal';
 
-function App() {
+const App: React.FC = () => {
+  const [modalOpen, setModalOpen] = useState(false);
+  const [score, setScore] = useState(0);
+
+  useEffect(() => {
+    WebFont.load({
+      google: {
+        families: ['Barlow Semi Condensed:600,700'],
+      },
+    });
+  });
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+      <GlobalStyles />
+      {modalOpen && <RulesModal setModalOpen={setModalOpen} />}
+      <main
+        className='container'
+        style={{
+          height: '100vh',
+          display: 'flex',
+          flexDirection: 'column',
+          justifyContent: 'space-between',
+          alignItems: 'center',
+        }}
+      >
+        <Header score={score} />
+        <Game setScore={setScore} />
+        <Rules setModalOpen={setModalOpen} />
+      </main>
+    </>
   );
-}
+};
 
 export default App;
